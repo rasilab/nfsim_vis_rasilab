@@ -7,8 +7,11 @@ export class System {
         this.definitions = {};
     }
     async initialize (mol_types) {
+        // we need to load in the SVG strings first
         await this.load_representations(mol_types);
+        // we now make symbols from each for re-use
         await this.define_representations();
+        // adding actors and associate them with symbols
         await this.add_actors(mol_types);
     }
     async add_actors (mol_types) {

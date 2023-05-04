@@ -8,10 +8,12 @@ let sys = settings.system;
 // basic test of system
 let ssu = sys.canvas.use(sys.definitions['ssu']);
 let lsu = sys.canvas.use(sys.definitions['lsu']);
+let lsu2 = sys.canvas.use(sys.definitions['lsu']);
 let ssu1 = sys.canvas.use(sys.definitions['ssu_component1_cap']);
 let ssu2 = sys.canvas.use(sys.definitions['ssu_component1_term']);
 lsu.move(1000,1000);
 ssu1.move(200,200);
 ssu2.move(500,500);
+lsu2.move(0,2000);
 
 sys.actors.map(x=>x.print_details());
