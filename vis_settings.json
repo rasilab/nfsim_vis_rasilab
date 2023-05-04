@@ -1,0 +1,34 @@
+{
+    "visualization_settings": {
+        "general": {
+            "width": 5000,
+            "height": 5000
+        },
+        "molecule_types": [
+            {
+                "name": "ssu",
+                "svg_path": "svgs/ssu.svg",
+                "components": [
+                    {
+                        "name": "component1",
+                        "pos": [0.0,0.0],
+                        "component_states": [
+                            {
+                                "name": "state1",
+                                "svg_path": ""
+                            },
+                            {
+                                "name": "state1",
+                                "svg_path": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "lsu",
+                "svg_path": "svgs/lsu.svg"
+            }
+        ]
+    }
+}

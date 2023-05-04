@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="108.15011mm"
+   height="45.585922mm"
+   viewBox="0 0 108.1501 45.585923"
+   version="1.1"
+   id="svg30554"
+   inkscape:export-filename="C:\Users\alexd\Documents\faeder\visualization\complex\cap.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="cap.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview30556"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:zoom="0.73584456"
+     inkscape:cx="322.75838"
+     inkscape:cy="67.269642"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="-7"
+     inkscape:window-y="-7"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs30551" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-51.996372,-130.74089)">
+    <rect
+       style="fill:#4c98ac;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect32223"
+       width="107.15011"
+       height="44.585922"
+       x="52.496372"
+       y="131.24089"
+       ry="13.663429" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;inline-size:22.6139;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+       x="99.599274"
+       y="151.01694"
+       id="text33701"
+       transform="matrix(3.3616811,0,0,3.3899852,-264.52815,-345.369)"><tspan
+         x="99.599274"
+         y="151.01694"
+         id="tspan52379">CAP</tspan></text>
+  </g>
+</svg>

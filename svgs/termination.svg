@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="142.8605mm"
+   height="45.026924mm"
+   viewBox="0 0 142.8605 45.026924"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="termination.svg"
+   inkscape:export-filename="C:\Users\alexd\Documents\faeder\visualization\complex\termination.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.73584456"
+     inkscape:cx="317.32245"
+     inkscape:cy="55.038798"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="-7"
+     inkscape:window-y="-7"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="183.46266"
+       y="149.48808"
+       width="103.28268"
+       height="107.35963"
+       id="rect45595" />
+    <rect
+       x="296.25821"
+       y="485.1568"
+       width="82.897942"
+       height="81.538963"
+       id="rect15168" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-86.225541,-163.01289)">
+    <path
+       id="text1640"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Impact;-inkscape-font-specification:Impact;fill:#000000;fill-opacity:1;stroke:#efff00;stroke-width:1.06979;stroke-opacity:1"
+       d="m 86.760436,163.54779 v 8.71704 h 4.040499 v 34.84142 h 6.831528 v -34.84142 h 4.056727 v -8.71704 z m 16.486534,0 v 43.55846 h 11.84565 v -8.71705 h -5.01412 v -9.57801 h 4.26768 v -8.28664 h -4.26768 v -8.25972 h 4.55976 v -8.71704 z m 31.70737,0 v 43.55846 h 5.97152 v -28.73406 l 2.51516,28.73406 h 4.23523 l 2.38535,-29.40666 v 29.40666 h 5.97149 v -43.55846 h -8.90855 l -1.5578,20.33986 -0.94115,-11.08469 c -0.29203,-3.55141 -0.56795,-6.63648 -0.82758,-9.25517 z m 23.82109,0 v 43.55846 h 6.83154 v -43.55846 z m 9.57388,0 v 43.55846 h 5.71187 v -19.80173 l 3.55371,19.80173 h 5.98773 v -43.55846 h -5.71187 v 19.61341 l -3.82957,-19.61341 z m 19.91042,0 -3.47254,43.55846 h 7.07492 l 0.40567,-7.82921 h 2.45025 l 0.34077,7.82921 h 6.99381 l -3.91068,-43.55846 z m 11.95925,0 v 8.71704 h 4.04049 v 34.84142 h 6.83154 v -34.84142 h 4.05672 v -8.71704 z m 16.48652,0 v 43.55846 h 11.84565 v -8.71705 h -5.01411 v -9.57801 h 4.26767 v -8.28664 h -4.26767 v -8.25972 h 4.55977 v -8.71704 z m -99.2827,0.0364 -0.36673,43.55576 6.82991,0.15619 0.16551,-19.63768 c 0.94107,0.0208 1.51813,0.31342 1.72979,0.87441 0.22248,0.56124 0.32308,2.00819 0.30343,4.3397 l -0.12171,14.47198 6.3447,0.14787 0.0973,-11.48823 c 0.0283,-3.51517 -0.0126,-5.65894 -0.12498,-6.43292 -0.10142,-0.79162 -0.38168,-1.65827 -0.83894,-2.60166 -0.45726,-0.94334 -1.35922,-1.71039 -2.70664,-2.29767 1.49469,-0.19836 2.50162,-0.87461 3.0198,-2.0286 0.51821,-1.15394 0.79093,-3.42526 0.81947,-6.8149 0.0314,-3.71244 -0.30867,-6.41985 -1.01905,-8.12248 -0.69955,-1.72034 -1.62032,-2.80029 -2.76343,-3.23934 -1.13229,-0.4389 -3.30953,-0.69484 -6.53295,-0.76945 z m 6.76824,7.61127 c 0.78963,0.0208 1.32777,0.24626 1.6162,0.68339 0.29925,0.43733 0.44327,1.34714 0.43164,2.72812 l -0.0195,2.3918 c -0.016,1.91901 -0.18307,3.05472 -0.49979,3.40615 -0.30575,0.33373 -0.84171,0.49148 -1.60971,0.47326 z m 69.29375,2.0917 c 0.3462,7.24631 0.69236,13.33576 1.03853,18.2682 h -2.33668 c 0.17302,-3.85629 0.60582,-9.94574 1.29815,-18.2682 z"
+       inkscape:export-filename="C:\Users\alexd\Documents\faeder\visualization\complex\termination.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text15166"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15168);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,33.009626,118.42747)"
+       id="text45593"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect45595);fill:#000000;fill-opacity:1;stroke:none" />
+  </g>
+</svg>
