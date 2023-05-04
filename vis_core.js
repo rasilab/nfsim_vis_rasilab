@@ -6,45 +6,72 @@ export class System {
         this.representations = representations;
         this.definitions = {};
     }
+    async initialize (mol_types) {
+        await this.load_representations(mol_types);
+        await this.define_representations();
+        await this.add_actors(mol_types);
+    }
+    async add_actors (mol_types) {
+        // initialize actors
+        return mol_types.map(x=>this.make_actor_from_def(x))
+                        .map(y=>this.add_actor(y));
+    }
+    // actor related methods
+    make_actor_from_def (def) {
+        let molecule = new Molecule(def['name'],this,{},this.definitions[def['name']]);
+        for (let i=0;i<def['components'].length;i++) {
+            let component = new Component(def['components'][i]['name'],
+                                    molecule, [], 0, def['components'][i]['pos']);
+            for (let j=0;j<def['components'][i]["component_states"].length;j++) {
+                let name = def['components'][i]["component_states"][j]['name'];
+                let state = new ComponentState(name,component,
+                                    this.definitions[`${molecule.name}_${component.name}_${name}`]);
+                component.add_state(state);
+            }
+            molecule.add_component(component.name, component);
+        }
+        return molecule;
+    }
     add_actor (actor) {
         actor.set_system(this);
         this.actors.push(actor);
     }
+    // representations and related methods
     add_representation (name, representation) {
         this.representations[name] = representation;
     }
-    load_representations(molecule_types) {
-        return Promise.all(
-            molecule_types.map(x=>
-                fetch(x['svg_path'])
+    async load_representations(molecule_types) {
+        for (let i=0;i<molecule_types.length;i++) {
+            let molec = molecule_types[i];
+            await fetch(molec['svg_path'])
                     .then(resp=>resp.text())
-                    .then(str=>this.add_representation(x['name'],str)
-                ))
-        );
+                    .then(str=>this.add_representation(`${molec['name']}`,str));
+            for (let j=0;j<molec['components'].length;j++) {
+                let comp = molec['components'][j];
+                for (let k=0;k<comp["component_states"].length;k++) {
+                    let state = comp["component_states"][k];
+                    await fetch(state['svg_path'])
+                        .then(resp=>resp.text())
+                        .then(str=>this.add_representation(`${molec['name']}_${comp['name']}_${state['name']}`,str));
+                }
+            }
+        }
     }
-    define_rep(rep_name) {
+    define_representation(rep_name) {
         let s = this.canvas.symbol();
         let def = s.svg(this.representations[rep_name]);
         this.definitions[rep_name] = def;
     }
-    define_reps() {
-        return Promise.all(Object.keys(this.representations).map(x=>this.define_rep(x)));
+    define_representations() {
+        return Promise.all(Object.keys(this.representations).map(x=>this.define_representation(x)));
     }
 }
 
 export class Actor {
-    constructor (source, enabled, parent) {
-        this.source = source;
-        this.enabled = enabled;
+    constructor (name, parent) {
+        this.name = name;
         this.parent = parent;
         this.system = null;
-        this.enabled = false;
-    }
-    enable() { 
-        this.enabled = true;
-    }
-    disable() { 
-        this.enabled = false;
     }
     set_parent(parent) { 
         this.parent = parent;
@@ -55,22 +82,30 @@ export class Actor {
 }
 
 export class Molecule extends Actor {
-    constructor (source, name, components, parent) {
-        super(source, parent);
-        this.name = name;
+    constructor (name, parent, components, definition) {
+        super(name, parent);
         this.components = components;
+        this.definition = definition;
     }
-    add_component (component) {
-        this.components.push(component);
+    add_component (name,component) {
+        component.set_system(this.system);
+        this.components[name] = component;
+    }
+    print_details () {
+        console.log(`Molecule name: ${this.name}`);
+        console.log(`Molecule rep: ${this.definition}`);
+        for (let i=0;i<Object.keys(this.components).length;i++) {
+            this.components[Object.keys(this.components)[i]].print_details();
+        }
     }
 }
 
 export class Component extends Actor {
-    constructor (source, name, states, current_state, parent) {
-        super(source, parent);
-        this.name = name;
+    constructor (name, parent, states, current_state, pos) {
+        super(name, parent);
         this.states = states;
         this.current_state = current_state;
+        this.pos = pos;
     }
     add_state (state) {
         this.states.push(state);
@@ -79,16 +114,27 @@ export class Component extends Actor {
     set_state (state) {
         this.current_state = state;
     }
-    render_self () {
-        console.log("rendering component");
-        this.current_state.render();
+    print_details () {
+        console.log(`  Component name: ${this.name}`);
+        console.log(`  Component state: ${this.current_state}`);
+        console.log(`  Component pos: ${this.pos}`);
+        for (let i=0;i<Object.keys(this.states).length;i++) {
+            this.states[Object.keys(this.states)[i]].print_details();
+        }
     }
 }
 
 export class ComponentState extends Actor {
-    constructor (source, name, parent) {
-        super(source, parent);
-        this.name = name;
+    constructor (name, parent, definition) {
+        super(name, parent);
+        this.definition = definition;
+    }
+    set_representation(definition) {
+        this.definition = definition;
+    }
+    print_details () {
+        console.log(`    State name: ${this.name}`);
+        console.log(`    State rep: ${this.definition}`);
     }
 }
 
@@ -98,17 +144,18 @@ export class Settings {
         this.system = null;
     }
     async parse_settings_file() {
+        // fetch settings JSON
         let settings_json = await fetch(this.setting_file).then(setting=>setting.json());
-        // initialize system
+        // initialize system from settings
         let vis_settings = settings_json['visualization_settings'];
         let w=vis_settings['general']['width'],h=vis_settings['general']['height'];
         let timeline = new SVG.Timeline();
         let canvas = SVG().addTo('body').size(window.innerWidth, window.innerHeight).viewbox(0, 0, w, h);
         let sys = new System(canvas, [], {}, timeline);
-        // pull visualization settings out and initialize molecule types
-        await sys.load_representations(vis_settings['molecule_types']);
-        await sys.define_reps();
+        // initialize
+        await sys.initialize(vis_settings['molecule_types']);
         // return initialized system
+        console.log("--System intialized--");
         this.system = sys;
     }
 }

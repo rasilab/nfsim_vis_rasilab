@@ -12,14 +12,15 @@
                     {
                         "name": "component1",
                         "pos": [0.0,0.0],
+                        "current_state": 0,
                         "component_states": [
                             {
-                                "name": "state1",
-                                "svg_path": ""
+                                "name": "cap",
+                                "svg_path": "svgs/cap.svg"
                             },
                             {
-                                "name": "state1",
-                                "svg_path": ""
+                                "name": "term",
+                                "svg_path": "svgs/termination.svg"
                             }
                         ]
                     }
@@ -27,7 +28,8 @@
             },
             {
                 "name": "lsu",
-                "svg_path": "svgs/lsu.svg"
+                "svg_path": "svgs/lsu.svg",
+                "components": []
             }
         ]
     }
