@@ -40,7 +40,8 @@ export class Molecule extends Actor {
         if (trans_mat != null) {
             console.log("transform matrix not implemented yet");
         }
-        // TODO: figure out how to group the render
+        // setup the runner for the group here as well
+        this.group.timeline(this.system.timeline);
         return this.group;
     }
     // detail printing for debug purposes
@@ -87,7 +88,6 @@ export class Component extends Actor {
         if (trans_mat != null) {
             console.log("transform matrix not implemented yet");
         }
-        // TODO: figure out how to group the render
         return render_inst;
     }
     // detail printing for debug purposes
