@@ -21,27 +21,27 @@ export class Molecule extends Actor {
         super(name, parent);
         this.components = components;
         this.symbol = symbol;
+        this.group = null;
     }
     add_component (name,component) {
         component.set_system(this.system);
         this.components[name] = component;
     }
     render (trans_mat) {
+        if (this.group == null) {
+            this.group = this.system.canvas.group();
+        }
         // render molecule
-        let render_inst = this.system.canvas.use(this.symbol);
-        this.system.add_instance(render_inst);
-        let state_renders = [];
+        this.group.use(this.symbol);
         // render components
         for (let i = 0;i<Object.keys(this.components).length;i++) {
-            let state_render = this.components[Object.keys(this.components)[i]].render(trans_mat)
-            this.system.add_instance(state_render);
-            state_renders.push(state_render);
+            this.components[Object.keys(this.components)[i]].render(trans_mat);
         }
         if (trans_mat != null) {
             console.log("transform matrix not implemented yet");
         }
         // TODO: figure out how to group the render
-        return [render_inst].concat(state_renders);
+        return this.group;
     }
     // detail printing for debug purposes
     print_details () {
@@ -62,17 +62,28 @@ export class Component extends Actor {
     }
     add_state (state) {
         state.set_system(this.system);
-        this.states.push(state);
+        if (state.id != null) {
+            this.states[state.id] = state;
+        } else {
+            this.states.push(state);
+        }
         state.set_parent(this);
     }
     set_state (state) {
         this.current_state = state;
+    }
+    set_state_by_id (state_id) {
+        this.current_state = this.states[state_id];
     }
     render (trans_mat) {
         // TODO: adjust trans mat for relative coordinates
 
         // render component states
         let render_inst = this.current_state.render(trans_mat);
+        render_inst.transform({
+            translateX: this.pos[0],
+            translateY: this.pos[1]
+        });
         if (trans_mat != null) {
             console.log("transform matrix not implemented yet");
         }
@@ -98,9 +109,12 @@ export class ComponentState extends Actor {
     set_symbol(symbol) {
         this.symbol = symbol;
     }
+    set_id (state_id) {
+        this.id = state_id;
+    }
     render (trans_mat) {
         // render state
-        let render_inst = this.system.canvas.use(this.symbol);
+        let render_inst = this.parent.parent.group.use(this.symbol);
         // transform as needed
         if (trans_mat != null) {
             console.log("transform matrix not implemented yet");
@@ -120,6 +134,7 @@ export class System {
     constructor (canvas, actors, svgs, timeline) {
         this.canvas = canvas;
         this.actors = actors;
+        this.actor_definitions = {};
         this.timeline = timeline;
         this.svgs = svgs;
         this.symbols = {};
@@ -131,21 +146,22 @@ export class System {
         // we now make symbols from each for re-use
         await this.define_symbols();
         // adding actors and associate them with symbols
-        await this.add_actors(mol_types);
+        await this.add_actor_definitions(mol_types);
     }
-    add_instance (instance) {
-        this.instances.push(instance);
+    async add_actor_definitions (mol_types) {
+        for (let i=0;i<mol_types.length;i++) { 
+            this.actor_definitions[mol_types[i].name] = mol_types[i];
+        }
+    }
+    add_actor_from_name (actor_name) {
+        let actor = this.make_actor_from_def(this.actor_definitions[actor_name]);
+        actor.set_system(this);
+        return actor;
     }
     add_actor (actor) {
         actor.set_system(this);
         this.actors[actor.name] = actor;
     }
-    async add_actors (mol_types) {
-        // initialize actors
-        return mol_types.map(x=>this.make_actor_from_def(x))
-                        .map(y=>this.add_actor(y));
-    }
-    // actor related methods
     make_actor_from_def (def) {
         let molecule = new Molecule(def['name'],this,{},this.symbols[def['svg_path']]);
         for (let i=0;i<def['components'].length;i++) {
@@ -156,6 +172,7 @@ export class System {
                 let name = def['components'][i]["component_states"][j]['name'];
                 let state = new ComponentState(name,component,
                                     this.symbols[`${def['components'][i]["component_states"][j]['svg_path']}`]);
+                state.set_id(def['components'][i]["component_states"][j]['state_id']);
                 component.add_state(state);
             }
             component.set_state(component.states[def['components'][i]['current_state']]);

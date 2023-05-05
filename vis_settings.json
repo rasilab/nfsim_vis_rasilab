@@ -11,14 +11,16 @@
                 "components": [
                     {
                         "name": "component1",
-                        "pos": [0.0,0.0],
-                        "current_state": 0,
+                        "pos": [0,500],
+                        "current_state": 1,
                         "component_states": [
                             {
+                                "state_id": 0,
                                 "name": "cap",
                                 "svg_path": "svgs/cap.svg"
                             },
                             {
+                                "state_id": 1,
                                 "name": "term",
                                 "svg_path": "svgs/termination.svg"
                             }
@@ -26,14 +28,16 @@
                     },
                     {
                         "name": "component2",
-                        "pos": [0.0,2.0],
-                        "current_state": 1,
+                        "pos": [370,0],
+                        "current_state": 0,
                         "component_states": [
                             {
+                                "state_id": 0,
                                 "name": "cap",
                                 "svg_path": "svgs/cap.svg"
                             },
                             {
+                                "state_id": 1,
                                 "name": "term",
                                 "svg_path": "svgs/termination.svg"
                             }
@@ -47,14 +51,16 @@
                 "components": [
                     {
                         "name": "component1",
-                        "pos": [0.0,0.0],
+                        "pos": [50,200],
                         "current_state": 0,
                         "component_states": [
                             {
+                                "state_id": 0,
                                 "name": "cap",
                                 "svg_path": "svgs/cap.svg"
                             },
                             {
+                                "state_id": 1,
                                 "name": "term",
                                 "svg_path": "svgs/termination.svg"
                             }
@@ -62,14 +68,16 @@
                     },
                     {
                         "name": "component2",
-                        "pos": [0.0,2.0],
+                        "pos": [1000,200],
                         "current_state": 1,
                         "component_states": [
                             {
+                                "state_id": 0,
                                 "name": "cap",
                                 "svg_path": "svgs/cap.svg"
                             },
                             {
+                                "state_id": 1,
                                 "name": "term",
                                 "svg_path": "svgs/termination.svg"
                             }
