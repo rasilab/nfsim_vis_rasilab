@@ -1,14 +1,14 @@
 export class System {
-    constructor (canvas, actors, representations, timeline) {
+    constructor (canvas, actors, svgs, timeline) {
         this.canvas = canvas;
         this.actors = actors;
         this.timeline = timeline;
-        this.representations = representations;
+        this.svgs = svgs;
         this.symbols = {};
     }
     async initialize (mol_types) {
         // we need to load in the SVG strings first
-        await this.load_representations(mol_types);
+        await this.load_svgs(mol_types);
         // we now make symbols from each for re-use
         await this.define_symbols();
         // adding actors and associate them with symbols
@@ -39,34 +39,34 @@ export class System {
         actor.set_system(this);
         this.actors.push(actor);
     }
-    // representations and related methods
-    add_representation (name, representation) {
-        this.representations[name] = representation;
+    // svgs and related methods
+    add_svg (name, svg) {
+        this.svgs[name] = svg;
     }
-    async load_representations(molecule_types) {
+    async load_svgs(molecule_types) {
         for (let i=0;i<molecule_types.length;i++) {
             let molec = molecule_types[i];
             await fetch(molec['svg_path'])
                     .then(resp=>resp.text())
-                    .then(str=>this.add_representation(`${molec['svg_path']}`,str));
+                    .then(str=>this.add_svg(`${molec['svg_path']}`,str));
             for (let j=0;j<molec['components'].length;j++) {
                 let comp = molec['components'][j];
                 for (let k=0;k<comp["component_states"].length;k++) {
                     let state = comp["component_states"][k];
                     await fetch(state['svg_path'])
                         .then(resp=>resp.text())
-                        .then(str=>this.add_representation(`${state['svg_path']}`,str));
+                        .then(str=>this.add_svg(`${state['svg_path']}`,str));
                 }
             }
         }
     }
     define_symbol(rep_name) {
         let s = this.canvas.symbol();
-        let def = s.svg(this.representations[rep_name]);
+        let def = s.svg(this.svgs[rep_name]);
         this.symbols[rep_name] = def;
     }
     define_symbols() {
-        return Promise.all(Object.keys(this.representations).map(x=>this.define_symbol(x)));
+        return Promise.all(Object.keys(this.svgs).map(x=>this.define_symbol(x)));
     }
 }
 
