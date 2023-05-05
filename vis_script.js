@@ -16,4 +16,4 @@ let lsu_template = sys.actors['lsu'];
 let lsu_inst_1_list = lsu_template.render();
 lsu_inst_1_list.map(x=>x.move(100,500));
 
-// Object.keys(sys.actors).map(x=>sys.actors[x].print_details());
+Object.keys(sys.actors).map(x=>sys.actors[x].print_details());
