@@ -23,13 +23,59 @@
                                 "svg_path": "svgs/termination.svg"
                             }
                         ]
+                    },
+                    {
+                        "name": "component2",
+                        "pos": [0.0,2.0],
+                        "current_state": 1,
+                        "component_states": [
+                            {
+                                "name": "cap",
+                                "svg_path": "svgs/cap.svg"
+                            },
+                            {
+                                "name": "term",
+                                "svg_path": "svgs/termination.svg"
+                            }
+                        ]
                     }
                 ]
             },
             {
                 "name": "lsu",
                 "svg_path": "svgs/lsu.svg",
-                "components": []
+                "components": [
+                    {
+                        "name": "component1",
+                        "pos": [0.0,0.0],
+                        "current_state": 0,
+                        "component_states": [
+                            {
+                                "name": "cap",
+                                "svg_path": "svgs/cap.svg"
+                            },
+                            {
+                                "name": "term",
+                                "svg_path": "svgs/termination.svg"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "component2",
+                        "pos": [0.0,2.0],
+                        "current_state": 1,
+                        "component_states": [
+                            {
+                                "name": "cap",
+                                "svg_path": "svgs/cap.svg"
+                            },
+                            {
+                                "name": "term",
+                                "svg_path": "svgs/termination.svg"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }

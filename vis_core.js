@@ -21,14 +21,14 @@ export class System {
     }
     // actor related methods
     make_actor_from_def (def) {
-        let molecule = new Molecule(def['name'],this,{},this.definitions[def['name']]);
+        let molecule = new Molecule(def['name'],this,{},this.definitions[def['svg_path']]);
         for (let i=0;i<def['components'].length;i++) {
             let component = new Component(def['components'][i]['name'],
                                     molecule, [], 0, def['components'][i]['pos']);
             for (let j=0;j<def['components'][i]["component_states"].length;j++) {
                 let name = def['components'][i]["component_states"][j]['name'];
                 let state = new ComponentState(name,component,
-                                    this.definitions[`${molecule.name}_${component.name}_${name}`]);
+                                    this.definitions[`${def['components'][i]["component_states"][j]['svg_path']}`]);
                 component.add_state(state);
             }
             molecule.add_component(component.name, component);
@@ -48,14 +48,14 @@ export class System {
             let molec = molecule_types[i];
             await fetch(molec['svg_path'])
                     .then(resp=>resp.text())
-                    .then(str=>this.add_representation(`${molec['name']}`,str));
+                    .then(str=>this.add_representation(`${molec['svg_path']}`,str));
             for (let j=0;j<molec['components'].length;j++) {
                 let comp = molec['components'][j];
                 for (let k=0;k<comp["component_states"].length;k++) {
                     let state = comp["component_states"][k];
                     await fetch(state['svg_path'])
                         .then(resp=>resp.text())
-                        .then(str=>this.add_representation(`${molec['name']}_${comp['name']}_${state['name']}`,str));
+                        .then(str=>this.add_representation(`${state['svg_path']}`,str));
                 }
             }
         }

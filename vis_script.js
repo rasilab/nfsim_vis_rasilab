@@ -6,11 +6,11 @@ await settings.parse_settings_file();
 let sys = settings.system;
 
 // basic test of system
-let ssu = sys.canvas.use(sys.definitions['ssu']);
-let lsu = sys.canvas.use(sys.definitions['lsu']);
-let lsu2 = sys.canvas.use(sys.definitions['lsu']);
-let ssu1 = sys.canvas.use(sys.definitions['ssu_component1_cap']);
-let ssu2 = sys.canvas.use(sys.definitions['ssu_component1_term']);
+let ssu = sys.canvas.use(sys.definitions['svgs/ssu.svg']);
+let lsu = sys.canvas.use(sys.definitions['svgs/lsu.svg']);
+let lsu2 = sys.canvas.use(sys.definitions['svgs/lsu.svg']);
+let ssu1 = sys.canvas.use(sys.definitions['svgs/cap.svg']);
+let ssu2 = sys.canvas.use(sys.definitions['svgs/termination.svg']);
 lsu.move(1000,1000);
 ssu1.move(200,200);
 ssu2.move(500,500);
