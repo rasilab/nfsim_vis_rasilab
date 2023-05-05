@@ -4,13 +4,13 @@ export class System {
         this.actors = actors;
         this.timeline = timeline;
         this.representations = representations;
-        this.definitions = {};
+        this.symbols = {};
     }
     async initialize (mol_types) {
         // we need to load in the SVG strings first
         await this.load_representations(mol_types);
         // we now make symbols from each for re-use
-        await this.define_representations();
+        await this.define_symbols();
         // adding actors and associate them with symbols
         await this.add_actors(mol_types);
     }
@@ -21,14 +21,14 @@ export class System {
     }
     // actor related methods
     make_actor_from_def (def) {
-        let molecule = new Molecule(def['name'],this,{},this.definitions[def['svg_path']]);
+        let molecule = new Molecule(def['name'],this,{},this.symbols[def['svg_path']]);
         for (let i=0;i<def['components'].length;i++) {
             let component = new Component(def['components'][i]['name'],
                                     molecule, [], 0, def['components'][i]['pos']);
             for (let j=0;j<def['components'][i]["component_states"].length;j++) {
                 let name = def['components'][i]["component_states"][j]['name'];
                 let state = new ComponentState(name,component,
-                                    this.definitions[`${def['components'][i]["component_states"][j]['svg_path']}`]);
+                                    this.symbols[`${def['components'][i]["component_states"][j]['svg_path']}`]);
                 component.add_state(state);
             }
             molecule.add_component(component.name, component);
@@ -60,13 +60,13 @@ export class System {
             }
         }
     }
-    define_representation(rep_name) {
+    define_symbol(rep_name) {
         let s = this.canvas.symbol();
         let def = s.svg(this.representations[rep_name]);
-        this.definitions[rep_name] = def;
+        this.symbols[rep_name] = def;
     }
-    define_representations() {
-        return Promise.all(Object.keys(this.representations).map(x=>this.define_representation(x)));
+    define_symbols() {
+        return Promise.all(Object.keys(this.representations).map(x=>this.define_symbol(x)));
     }
 }
 
@@ -85,10 +85,10 @@ export class Actor {
 }
 
 export class Molecule extends Actor {
-    constructor (name, parent, components, definition) {
+    constructor (name, parent, components, symbol) {
         super(name, parent);
         this.components = components;
-        this.definition = definition;
+        this.symbol = symbol;
     }
     add_component (name,component) {
         component.set_system(this.system);
@@ -96,7 +96,7 @@ export class Molecule extends Actor {
     }
     print_details () {
         console.log(`Molecule name: ${this.name}`);
-        console.log(`Molecule rep: ${this.definition}`);
+        console.log(`Molecule rep: ${this.symbol}`);
         for (let i=0;i<Object.keys(this.components).length;i++) {
             this.components[Object.keys(this.components)[i]].print_details();
         }
@@ -128,16 +128,16 @@ export class Component extends Actor {
 }
 
 export class ComponentState extends Actor {
-    constructor (name, parent, definition) {
+    constructor (name, parent, symbol) {
         super(name, parent);
-        this.definition = definition;
+        this.symbol = symbol;
     }
-    set_representation(definition) {
-        this.definition = definition;
+    set_symbol(symbol) {
+        this.symbol = symbol;
     }
     print_details () {
         console.log(`    State name: ${this.name}`);
-        console.log(`    State rep: ${this.definition}`);
+        console.log(`    State rep: ${this.symbol}`);
     }
 }
 
