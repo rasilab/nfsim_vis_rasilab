@@ -14,6 +14,10 @@ export class System {
         // adding actors and associate them with symbols
         await this.add_actors(mol_types);
     }
+    add_actor (actor) {
+        actor.set_system(this);
+        this.actors[actor.name] = actor;
+    }
     async add_actors (mol_types) {
         // initialize actors
         return mol_types.map(x=>this.make_actor_from_def(x))
@@ -34,10 +38,6 @@ export class System {
             molecule.add_component(component.name, component);
         }
         return molecule;
-    }
-    add_actor (actor) {
-        actor.set_system(this);
-        this.actors.push(actor);
     }
     // svgs and related methods
     add_svg (name, svg) {
@@ -154,7 +154,7 @@ export class Settings {
         let w=vis_settings['general']['width'],h=vis_settings['general']['height'];
         let timeline = new SVG.Timeline();
         let canvas = SVG().addTo('body').size(window.innerWidth, window.innerHeight).viewbox(0, 0, w, h);
-        let sys = new System(canvas, [], {}, timeline);
+        let sys = new System(canvas, {}, {}, timeline);
         // initialize
         await sys.initialize(vis_settings['molecule_types']);
         // return initialized system

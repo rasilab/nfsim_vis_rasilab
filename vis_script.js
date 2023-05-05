@@ -16,4 +16,4 @@ ssu1.move(200,200);
 ssu2.move(500,500);
 lsu2.move(0,2000);
 
-sys.actors.map(x=>x.print_details());
+Object.keys(sys.actors).map(x=>sys.actors[x].print_details());
