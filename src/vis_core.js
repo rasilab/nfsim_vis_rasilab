@@ -1,3 +1,6 @@
+// this is needed when running from npm
+// import { SVG } from '@svgdotjs/svg.js'
+
 // Begin: Actor classes
 export class Actor {
   constructor(name, parent) {
