@@ -27,7 +27,7 @@ export class Molecule extends Actor {
         component.set_system(this.system);
         this.components[name] = component;
     }
-    render (trans_mat) {
+    render () {
         if (this.group == null) {
             this.group = this.system.canvas.group();
         }
@@ -35,14 +35,14 @@ export class Molecule extends Actor {
         this.group.use(this.symbol);
         // render components
         for (let i = 0;i<Object.keys(this.components).length;i++) {
-            this.components[Object.keys(this.components)[i]].render(trans_mat);
-        }
-        if (trans_mat != null) {
-            console.log("transform matrix not implemented yet");
+            this.components[Object.keys(this.components)[i]].render();
         }
         // setup the runner for the group here as well
         this.group.timeline(this.system.timeline);
         return this.group;
+    }
+    transform (transform_dict) {
+        this.group.transform(transform_dict);
     }
     // detail printing for debug purposes
     print_details () {
@@ -76,18 +76,15 @@ export class Component extends Actor {
     set_state_by_id (state_id) {
         this.current_state = this.states[state_id];
     }
-    render (trans_mat) {
+    render () {
         // TODO: adjust trans mat for relative coordinates
 
         // render component states
-        let render_inst = this.current_state.render(trans_mat);
+        let render_inst = this.current_state.render();
         render_inst.transform({
             translateX: this.pos[0],
             translateY: this.pos[1]
         });
-        if (trans_mat != null) {
-            console.log("transform matrix not implemented yet");
-        }
         return render_inst;
     }
     // detail printing for debug purposes
@@ -112,13 +109,10 @@ export class ComponentState extends Actor {
     set_id (state_id) {
         this.id = state_id;
     }
-    render (trans_mat) {
+    render () {
         // render state
         let render_inst = this.parent.parent.group.use(this.symbol);
         // transform as needed
-        if (trans_mat != null) {
-            console.log("transform matrix not implemented yet");
-        }
         return render_inst;
     }
     // detail printing for debug purposes
@@ -140,13 +134,13 @@ export class System {
         this.symbols = {};
         this.instances = [];
     }
-    async initialize (mol_types) {
+    async initialize (settings) {
         // we need to load in the SVG strings first
-        await this.load_svgs(mol_types);
+        await this.load_svgs(settings['svgs']);
         // we now make symbols from each for re-use
         await this.define_symbols();
         // adding actors and associate them with symbols
-        await this.add_actor_definitions(mol_types);
+        await this.add_actor_definitions(settings['molecule_types']);
     }
     async add_actor_definitions (mol_types) {
         for (let i=0;i<mol_types.length;i++) { 
@@ -163,7 +157,7 @@ export class System {
         this.actors[actor.name] = actor;
     }
     make_actor_from_def (def) {
-        let molecule = new Molecule(def['name'],this,{},this.symbols[def['svg_path']]);
+        let molecule = new Molecule(def['name'],this,{},this.symbols[def['svg_name']]);
         for (let i=0;i<def['components'].length;i++) {
             let component = new Component(def['components'][i]['name'],
                                     molecule, [], 0, def['components'][i]['pos']);
@@ -171,7 +165,7 @@ export class System {
             for (let j=0;j<def['components'][i]["component_states"].length;j++) {
                 let name = def['components'][i]["component_states"][j]['name'];
                 let state = new ComponentState(name,component,
-                                    this.symbols[`${def['components'][i]["component_states"][j]['svg_path']}`]);
+                                    this.symbols[`${def['components'][i]["component_states"][j]['svg_name']}`]);
                 state.set_id(def['components'][i]["component_states"][j]['state_id']);
                 component.add_state(state);
             }
@@ -184,20 +178,16 @@ export class System {
     add_svg (name, svg) {
         this.svgs[name] = svg;
     }
-    async load_svgs(molecule_types) {
-        for (let i=0;i<molecule_types.length;i++) {
-            let molec = molecule_types[i];
-            await fetch(molec['svg_path'])
+    async load_svgs(svgs) {
+        for (let i=0;i<svgs.length;i++) {
+            let svg = svgs[i];
+            // check if it's a file
+            if (svg['type']=="file") {
+                await fetch(svg['path'])
                     .then(resp=>resp.text())
-                    .then(str=>this.add_svg(`${molec['svg_path']}`,str));
-            for (let j=0;j<molec['components'].length;j++) {
-                let comp = molec['components'][j];
-                for (let k=0;k<comp["component_states"].length;k++) {
-                    let state = comp["component_states"][k];
-                    await fetch(state['svg_path'])
-                        .then(resp=>resp.text())
-                        .then(str=>this.add_svg(`${state['svg_path']}`,str));
-                }
+                    .then(str=>this.add_svg(`${svg['name']}`,str));
+            } else {
+                Error(`SVG type ${svg['type']} is not implemented!`);
             }
         }
     }
@@ -227,7 +217,7 @@ export class Settings {
         let canvas = SVG().addTo('body').size(window.innerWidth, window.innerHeight).viewbox(0, 0, w, h);
         let sys = new System(canvas, {}, {}, timeline);
         // initialize
-        await sys.initialize(vis_settings['molecule_types']);
+        await sys.initialize(vis_settings);
         // return initialized system
         console.log("--System intialized--");
         this.system = sys;

@@ -7,7 +7,7 @@
         "molecule_types": [
             {
                 "name": "ssu",
-                "svg_path": "svgs/ssu.svg",
+                "svg_name": "ssu",
                 "components": [
                     {
                         "name": "component1",
@@ -17,12 +17,12 @@
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "svgs/cap.svg"
+                                "svg_name": "cap"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "svgs/termination.svg"
+                                "svg_name": "term"
                             }
                         ]
                     },
@@ -34,12 +34,12 @@
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "svgs/cap.svg"
+                                "svg_name": "cap"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "svgs/termination.svg"
+                                "svg_name": "term"
                             }
                         ]
                     }
@@ -47,7 +47,7 @@
             },
             {
                 "name": "lsu",
-                "svg_path": "svgs/lsu.svg",
+                "svg_name": "lsu",
                 "components": [
                     {
                         "name": "component1",
@@ -57,12 +57,12 @@
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "svgs/cap.svg"
+                                "svg_path": "cap"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "svgs/termination.svg"
+                                "svg_path": "term"
                             }
                         ]
                     },
@@ -74,16 +74,60 @@
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "svgs/cap.svg"
+                                "svg_path": "cap"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "svgs/termination.svg"
+                                "svg_path": "term"
                             }
                         ]
                     }
                 ]
+            }
+        ],
+        "svgs": [
+            {
+                "name": "play",
+                "type": "file",
+                "path": "svgs/play.svg"
+
+            },
+            {
+                "name": "pause",
+                "type": "file",
+                "path": "svgs/pause.svg"
+
+            },
+            {
+                "name": "stop",
+                "type": "file",
+                "path": "svgs/stop.svg"
+
+            },
+            {
+                "name": "ssu",
+                "type": "file",
+                "path": "svgs/ssu.svg"
+
+            },
+            {
+                "name": "lsu",
+                "type": "file",
+                "path": "svgs/lsu.svg"
+
+            },
+            {
+                "name": "cap",
+                "type": "file",
+                "path": "svgs/cap.svg"
+
+            },
+            {
+                "name": "term",
+                "type": "file",
+                "path": "svgs/termination.svg"
+
             }
         ]
     }
