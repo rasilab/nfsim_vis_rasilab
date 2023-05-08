@@ -58,13 +58,34 @@ lsu_inst_1_grp.dmove(1000,3000);
 lsu_inst_1_grp.size(2000,null);
 
 // ANIMATE
-ssu_inst_1_grp.animate({
+ssu_inst_1.animator = ssu_inst_1_grp.animate({
         duration: 2000,
         delay: 0,
         when: 'absolute',
         swing: false,
         times: 1
     }).transform({ translate: [500,500], rotate: 125 }, lsu_inst_1_grp);
+ssu_inst_1.animator = ssu_inst_1.animator.animate({
+    duration: 2000,
+    delay: 0,
+    when: 'after',
+    swing: false,
+    times: 1
+}).opacity(0.0);
+ssu_inst_1.animator = ssu_inst_1.animator.animate({
+    duration: 2000,
+    delay: 0,
+    when: 'after',
+    swing: false,
+    times: 1
+}).opacity(1.0);
+ssu_inst_1.animator = ssu_inst_1.animator.animate({
+    duration: 2000,
+    delay: 0,
+    when: 'after',
+    swing: false,
+    times: 1
+}).transform({ translate: [-500,-500], rotate: -125 }, ssu_inst_1_grp);
 
     // animate lsu separately 
 let lsu_animator = lsu_inst_1_grp.animate({

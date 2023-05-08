@@ -22,6 +22,7 @@ export class Molecule extends Actor {
         this.components = components;
         this.symbol = symbol;
         this.group = null;
+        this.animator = null;
     }
     add_component (name,component) {
         component.set_system(this.system);
