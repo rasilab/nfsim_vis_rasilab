@@ -1,146 +1,137 @@
 {
-    "visualization_settings": {
-        "general": {
-            "width": 5000,
-            "height": 5000
-        },
-        "molecule_types": [
-            {
-                "name": "ssu",
-                "svg_name": "ssu",
-                "components": [
-                    {
-                        "name": "component1",
-                        "pos": [0,500],
-                        "current_state": 1,
-                        "component_states": [
-                            {
-                                "state_id": 0,
-                                "name": "cap",
-                                "svg_name": "cap"
-                            },
-                            {
-                                "state_id": 1,
-                                "name": "term",
-                                "svg_name": "term"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "component2",
-                        "pos": [370,0],
-                        "current_state": 0,
-                        "component_states": [
-                            {
-                                "state_id": 0,
-                                "name": "cap",
-                                "svg_name": "cap"
-                            },
-                            {
-                                "state_id": 1,
-                                "name": "term",
-                                "svg_name": "term"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "lsu",
-                "svg_name": "lsu",
-                "components": [
-                    {
-                        "name": "component1",
-                        "pos": [100,200],
-                        "current_state": 0,
-                        "component_states": [
-                            {
-                                "state_id": 0,
-                                "name": "cap",
-                                "svg_name": "cap2"
-                            },
-                            {
-                                "state_id": 1,
-                                "name": "term",
-                                "svg_name": "term2"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "component2",
-                        "pos": [1200,200],
-                        "current_state": 1,
-                        "component_states": [
-                            {
-                                "state_id": 0,
-                                "name": "cap",
-                                "svg_name": "cap2"
-                            },
-                            {
-                                "state_id": 1,
-                                "name": "term",
-                                "svg_name": "term2"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
-        "svgs": [
-            {
-                "name": "play",
-                "type": "file",
-                "path": "../svgs/play.svg"
-
-            },
-            {
-                "name": "pause",
-                "type": "file",
-                "path": "../svgs/pause.svg"
-
-            },
-            {
-                "name": "stop",
-                "type": "file",
-                "path": "../svgs/stop.svg"
-
-            },
-            {
-                "name": "ssu",
-                "type": "file",
-                "path": "../svgs/ssu.svg"
-
-            },
-            {
-                "name": "lsu",
-                "type": "file",
-                "path": "../svgs/lsu.svg"
-
-            },
-            {
+  "visualization_settings": {
+    "general": {
+      "width": 5000,
+      "height": 5000
+    },
+    "molecule_types": [
+      {
+        "name": "ssu",
+        "svg_name": "ssu",
+        "components": [
+          {
+            "name": "component1",
+            "pos": [0, 500],
+            "current_state": 1,
+            "component_states": [
+              {
+                "state_id": 0,
                 "name": "cap",
-                "type": "file",
-                "path": "../svgs/cap.svg"
-
-            },
-            {
+                "svg_name": "cap"
+              },
+              {
+                "state_id": 1,
                 "name": "term",
-                "type": "file",
-                "path": "../svgs/termination.svg"
-
-            },
-            {
-                "name": "term2",
-                "type": "string",
-                "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg>"
-
-            },
-            {
-                "name": "cap2",
-                "type": "string",
-                "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"black\" /></svg>"
-
-            }
+                "svg_name": "term"
+              }
+            ]
+          },
+          {
+            "name": "component2",
+            "pos": [370, 0],
+            "current_state": 0,
+            "component_states": [
+              {
+                "state_id": 0,
+                "name": "cap",
+                "svg_name": "cap"
+              },
+              {
+                "state_id": 1,
+                "name": "term",
+                "svg_name": "term"
+              }
+            ]
+          }
         ]
-    }
+      },
+      {
+        "name": "lsu",
+        "svg_name": "lsu",
+        "components": [
+          {
+            "name": "component1",
+            "pos": [100, 200],
+            "current_state": 0,
+            "component_states": [
+              {
+                "state_id": 0,
+                "name": "cap",
+                "svg_name": "cap2"
+              },
+              {
+                "state_id": 1,
+                "name": "term",
+                "svg_name": "term2"
+              }
+            ]
+          },
+          {
+            "name": "component2",
+            "pos": [1200, 200],
+            "current_state": 1,
+            "component_states": [
+              {
+                "state_id": 0,
+                "name": "cap",
+                "svg_name": "cap2"
+              },
+              {
+                "state_id": 1,
+                "name": "term",
+                "svg_name": "term2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "svgs": [
+      {
+        "name": "play",
+        "type": "file",
+        "path": "../svgs/play.svg"
+      },
+      {
+        "name": "pause",
+        "type": "file",
+        "path": "../svgs/pause.svg"
+      },
+      {
+        "name": "stop",
+        "type": "file",
+        "path": "../svgs/stop.svg"
+      },
+      {
+        "name": "ssu",
+        "type": "file",
+        "path": "../svgs/ssu.svg"
+      },
+      {
+        "name": "lsu",
+        "type": "file",
+        "path": "../svgs/lsu.svg"
+      },
+      {
+        "name": "cap",
+        "type": "file",
+        "path": "../svgs/cap.svg"
+      },
+      {
+        "name": "term",
+        "type": "file",
+        "path": "../svgs/termination.svg"
+      },
+      {
+        "name": "term2",
+        "type": "string",
+        "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg>"
+      },
+      {
+        "name": "cap2",
+        "type": "string",
+        "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"black\" /></svg>"
+      }
+    ]
+  }
 }

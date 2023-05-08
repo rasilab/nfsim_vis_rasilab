@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ASinanSaglam/nfsim_vis#readme",
   "devDependencies": {
     "eslint": "8.40.0"
+  },
+  "dependencies": {
+    "prettier": "^2.8.8"
   }
 }
