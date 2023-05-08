@@ -4,6 +4,7 @@ import * as core from './vis_core.js';
 let settings = new core.Settings("vis_settings.json");
 await settings.parse_settings_file();
 let sys = settings.system;
+
 // allows us to use the buttons even after animation finishes
 // stops SVG.js from removing the timeline after completion
 sys.timeline.persist(true);
