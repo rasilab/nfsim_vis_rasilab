@@ -1,0 +1,21 @@
+{
+  "name": "nfsim_vis",
+  "version": "1.0.0",
+  "description": "Basic visualization helper library for nfsim trajectories",
+  "main": "vis_core.js",
+  "scripts": {
+    "lint:js": "eslint src/**/*.js",
+    "lint": "npm run lint:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ASinanSaglam/nfsim_vis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ASinanSaglam/nfsim_vis/issues"
+  },
+  "homepage": "https://github.com/ASinanSaglam/nfsim_vis#readme"
+}
