@@ -186,6 +186,8 @@ export class System {
                 await fetch(svg['path'])
                     .then(resp=>resp.text())
                     .then(str=>this.add_svg(`${svg['name']}`,str));
+            } else if ((svg['type']=="string")) {
+                this.add_svg(`${svg['name']}`,svg['string'])
             } else {
                 Error(`SVG type ${svg['type']} is not implemented!`);
             }

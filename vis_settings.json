@@ -51,35 +51,35 @@
                 "components": [
                     {
                         "name": "component1",
-                        "pos": [50,200],
+                        "pos": [100,200],
                         "current_state": 0,
                         "component_states": [
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "cap"
+                                "svg_name": "cap2"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "term"
+                                "svg_name": "term2"
                             }
                         ]
                     },
                     {
                         "name": "component2",
-                        "pos": [1000,200],
+                        "pos": [1200,200],
                         "current_state": 1,
                         "component_states": [
                             {
                                 "state_id": 0,
                                 "name": "cap",
-                                "svg_path": "cap"
+                                "svg_name": "cap2"
                             },
                             {
                                 "state_id": 1,
                                 "name": "term",
-                                "svg_path": "term"
+                                "svg_name": "term2"
                             }
                         ]
                     }
@@ -127,6 +127,18 @@
                 "name": "term",
                 "type": "file",
                 "path": "svgs/termination.svg"
+
+            },
+            {
+                "name": "term2",
+                "type": "string",
+                "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg>"
+
+            },
+            {
+                "name": "cap2",
+                "type": "string",
+                "string": "<svg height=\"500\" width=\"500\"><circle cx=\"100\" cy=\"100\" r=\"100\" stroke=\"black\" stroke-width=\"3\" fill=\"black\" /></svg>"
 
             }
         ]

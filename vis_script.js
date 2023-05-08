@@ -4,6 +4,8 @@ import * as core from './vis_core.js';
 let settings = new core.Settings("vis_settings.json");
 await settings.parse_settings_file();
 let sys = settings.system;
+// allows us to use the buttons even after animation finishes
+// stops SVG.js from removing the timeline after completion
 sys.timeline.persist(true);
 // start stop restart
 let play = sys.canvas.group().use(sys.symbols["play"]);
@@ -32,17 +34,6 @@ ssu_inst_1_grp.center(1000,1000);
 ssu_inst_1_grp.dmove(1000,1000);
 // resizing, null allows for proportional resizing
 ssu_inst_1_grp.size(2000,null);
-// opacity
-// ssu_inst_1_grp.opacity(0.5)
-
-// ssu_inst_1_grp.animate({
-//     duration: 2000,
-//     delay: 0,
-//     when: 'now',
-//     swing: true,
-//     times: 5
-// }).transform({translate: [100,150]});
-
 
 // let ssu_inst_2 = sys.add_actor_from_name('ssu');
 // ssu_inst_2.components['component1'].set_state_by_id(1);
@@ -65,15 +56,8 @@ lsu_inst_1_grp.center(1000,1000);
 lsu_inst_1_grp.dmove(1000,3000);
 // resizing, null allows for proportional resizing
 lsu_inst_1_grp.size(2000,null);
-// lsu_inst_1_grp.move(100,500);
-// lsu_inst_1_grp.animate({
-//     duration: 2000,
-//     delay: 2000,
-//     when: 'now',
-//     swing: true,
-//     times: 5
-// }).transform({translate: [2000,2000]});
 
+// ANIMATE
 ssu_inst_1_grp.animate({
         duration: 2000,
         delay: 0,
@@ -104,3 +88,10 @@ let lsu_animator = lsu_inst_1_grp.animate({
         swing: false,
         times: 1
     }).opacity(1.0);
+lsu_animator.animate({
+    duration: 1000,
+    delay: 0,
+    when: 'after',
+    swing: false,
+    times: 1
+}).transform({ translate: [500,500], rotate: 125 }, ssu_inst_1_grp)
