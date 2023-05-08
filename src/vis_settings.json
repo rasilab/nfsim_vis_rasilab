@@ -90,43 +90,43 @@
             {
                 "name": "play",
                 "type": "file",
-                "path": "svgs/play.svg"
+                "path": "../svgs/play.svg"
 
             },
             {
                 "name": "pause",
                 "type": "file",
-                "path": "svgs/pause.svg"
+                "path": "../svgs/pause.svg"
 
             },
             {
                 "name": "stop",
                 "type": "file",
-                "path": "svgs/stop.svg"
+                "path": "../svgs/stop.svg"
 
             },
             {
                 "name": "ssu",
                 "type": "file",
-                "path": "svgs/ssu.svg"
+                "path": "../svgs/ssu.svg"
 
             },
             {
                 "name": "lsu",
                 "type": "file",
-                "path": "svgs/lsu.svg"
+                "path": "../svgs/lsu.svg"
 
             },
             {
                 "name": "cap",
                 "type": "file",
-                "path": "svgs/cap.svg"
+                "path": "../svgs/cap.svg"
 
             },
             {
                 "name": "term",
                 "type": "file",
-                "path": "svgs/termination.svg"
+                "path": "../svgs/termination.svg"
 
             },
             {
