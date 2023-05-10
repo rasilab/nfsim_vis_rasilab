@@ -63,6 +63,7 @@ export class Component extends Actor {
     super(name, parent);
     this.states = states;
     this.current_state = current_state;
+    this.current_render;
     this.pos = pos;
   }
   add_state(state) {
@@ -81,15 +82,25 @@ export class Component extends Actor {
     this.current_state = this.states[state_id];
   }
   render() {
-    // TODO: adjust trans mat for relative coordinates
-
     // render component states
-    let render_inst = this.current_state.render();
-    render_inst.transform({
-      translateX: this.pos[0],
-      translateY: this.pos[1],
-    });
-    return render_inst;
+    for (let i = 0;i<this.states.length;i++) { 
+      if (i==this.current_state.id) {
+        let render_inst = this.current_state.render(true);
+        this.current_render = render_inst;
+        render_inst.transform({
+          translateX: this.pos[0],
+          translateY: this.pos[1],
+        });
+      } else {
+        let render_inst = this.states[i].render(false);
+        render_inst.transform({
+          translateX: this.pos[0],
+          translateY: this.pos[1],
+        });
+      }
+    } 
+    
+    return this.current_render;
   }
   // detail printing for debug purposes
   print_details() {
@@ -113,9 +124,12 @@ export class ComponentState extends Actor {
   set_id(state_id) {
     this.id = state_id;
   }
-  render() {
+  render(visible) {
     // render state
     let render_inst = this.parent.parent.group.use(this.symbol);
+    if (!visible) { 
+      render_inst.opacity(0.0);
+    }
     // transform as needed
     return render_inst;
   }

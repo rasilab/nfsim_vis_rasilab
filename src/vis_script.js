@@ -42,6 +42,11 @@ ssu_inst_1_grp.dmove(1000, 1000);
 // resizing, null allows for proportional resizing
 ssu_inst_1_grp.size(2000, null);
 
+// ssu_inst_1_grp.each(function(i,children) {
+//   console.log(children);
+//   console.log(i);
+// });
+
 // let ssu_inst_2 = sys.add_actor_from_name('ssu');
 // ssu_inst_2.components['component1'].set_state_by_id(1);
 // ssu_inst_2.components['component2'].set_state_by_id(1);
@@ -56,7 +61,10 @@ ssu_inst_1_grp.size(2000, null);
 // }).transform({translate: [500,1500]});
 
 let lsu_inst_1 = sys.add_actor_from_name("lsu");
+lsu_inst_1.components["component1"].set_state_by_id(1);
+lsu_inst_1.components["component2"].set_state_by_id(1);
 let lsu_inst_1_grp = lsu_inst_1.render();
+
 // sets the center location
 lsu_inst_1_grp.center(1000, 1000);
 // moves relative to current location
@@ -67,11 +75,11 @@ lsu_inst_1_grp.size(2000, null);
 // ANIMATE
 ssu_inst_1.animator = ssu_inst_1_grp
   .animate({
-    duration: 2000,
+    duration: 500,
     delay: 0,
     when: "absolute",
-    swing: false,
-    times: 1,
+    swing: true,
+    times: 5,
   })
   .transform({ translate: [500, 500], rotate: 125 }, lsu_inst_1_grp);
 ssu_inst_1.animator = ssu_inst_1.animator
@@ -101,6 +109,7 @@ ssu_inst_1.animator = ssu_inst_1.animator
     times: 1,
   })
   .transform({ translate: [-500, -500], rotate: -125 }, ssu_inst_1_grp);
+
 
 // animate lsu separately
 let lsu_animator = lsu_inst_1_grp
